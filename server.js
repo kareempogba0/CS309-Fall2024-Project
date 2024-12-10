@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const Product = require("./Product");
-const User = require("./user");
 
 const app = express();
 app.use(express.json());
@@ -25,11 +24,8 @@ app.post("/addproducts", async (req, res) => {
     if (exist) {
       return res.status(400).send("Product already exists");
     }
-
-    const lastProduct = await Product.findOne().sort({ id: -1 }).limit(1);
-    const newId = lastProduct ? lastProduct.id + 1 : 1;
     const product = new Product({
-      id: newId,
+      id: req.body.id,
       name: req.body.name,
       price: req.body.price,
       describ: req.body.describ,
