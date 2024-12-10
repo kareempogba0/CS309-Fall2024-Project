@@ -1,0 +1,29 @@
+.clock-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 30vh;
+  color: rgba(16, 0, 0, 0.875);
+}
+
+h1{
+  margin-bottom: 0.5em;
+  font-size: 3rem;
+  border: 2px solid rgba(16, 0, 0, 0.159);
+  padding: 0.5em 1em;
+  border-radius: 50px;
+  background-color: rgba(16, 0, 0, 0.159);
+  box-shadow: 0 0 5px rgba(16, 0, 0, 0.2);
+}
+
+h1:hover{
+  background-color: rgba(16, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.clock{
+  font-size: 2em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
