@@ -1,4 +1,4 @@
-Laptop Sales Website
+**Laptop Sales Website**
 Overview
 
 This project is a full-stack web application for selling laptops. The website allows users to browse available laptops, view detailed information about each product, and make purchases.
@@ -30,11 +30,10 @@ Tools and Utilities
     Git for version control.
 
 Installation
+Clone the repository:
 
-    Clone the repository:
-
-git clone https://github.com/kareempogba0/CS309-Fall2024-Project
-cd OurProject
+    git clone https://github.com/kareempogba0/CS309-Fall2024-Project
+    cd OurProject
 
 Install dependencies:
 
