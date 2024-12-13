@@ -28,7 +28,7 @@ app.post("/addproducts", async (req, res) => {
       id: req.body.id,
       name: req.body.name,
       price: req.body.price,
-      describ: req.body.describ,
+      description: req.body.description,
       image: req.body.image,
       category: req.body.category,
     });
@@ -64,7 +64,7 @@ app.put("/updateproduct/:id", async (req, res) => {
       {
         name: req.body.name,
         price: req.body.price,
-        describ: req.body.describ,
+        description: req.body.description,
         image: req.body.image,
         category: req.body.category,
       },
