@@ -1,69 +1,73 @@
-**Laptop Sales Website**
-Overview
+# Laptop Sales Website
 
-This project is a full-stack web application for selling laptops. The website allows users to browse available laptops, view detailed information about each product, and make purchases.
+## **Overview ** 
+
+This project is a **full-stack web application for selling laptops**. The website allows users to browse available laptops, view detailed information about each product, and make purchases.
 
 The application uses modern technologies and provides a seamless user experience.
-Features
 
-    User-friendly interface for browsing laptops.
-    Search and filter functionality to find laptops by brand, price, or specifications.
-    Secure user authentication for login and registration.
-    Shopping cart for managing selected items.
-    Order history for tracking past purchases.
-    Admin panel for managing inventory, orders, and users.
+## **Features** 
 
-Technologies Used
-Frontend
+   - User-friendly interface for browsing laptops.
+   - Search and filter functionality to find laptops by brand, price, or specifications.
+   - Secure user authentication for login and registration.
+   - Shopping cart for managing selected items.
+   - Order history for tracking past purchases.
+   - Admin panel for managing inventory, orders, and users.
 
-    HTML, CSS, and JavaScript for building the user interface.
-    React.js for creating dynamic and responsive components.
+## **Technologies Used**
+## *Frontend*
 
-Backend
+   - HTML, CSS, and JavaScript for building the user interface.
+   - React.js for creating dynamic and responsive components.
 
-    Node.js and Express.js for handling server-side operations.
-    MongoDB for database management.
+## *Backend*
 
-Tools and Utilities
+   - Node.js and Express.js for handling server-side operations.
+   - MongoDB for database management.
 
-    Postman for API testing.
-    Git for version control.
+## *Tools and Utilities*
 
-Installation
-Clone the repository:
+   - Postman for API testing.
+   - Git for version control.
 
+## **Installation**
+## *Clone the repository:*
+
+    ```bash
     git clone https://github.com/kareempogba0/CS309-Fall2024-Project
-    cd OurProject
+    cd CS309-Fall2024-Project
+    ```
 
-Install dependencies:
+## **Install dependencies:**
 
     npm install
 
-Set up the environment variables:
+## **Set up the environment variables:**
 
-    Create a .env file in the root directory.
+   - Create a .env file in the root directory.
     Add the following variables:
 
     DATABASE_URL=<your-mongodb-url>
     JWT_SECRET=<your-jwt-secret>
     PORT=<your-port>
 
-Start the application:
+## **Start the application:**
 
     npm start
 
-Usage
+## **Usage**
 
-    Navigate to the homepage to view available laptops.
-    Log in or sign up to add items to your cart.
-    Proceed to checkout to complete a purchase.
+   - Navigate to the homepage to view available laptops.
+   - Log in or sign up to add items to your cart.
+   - Proceed to checkout to complete a purchase.
 
-Future Enhancements
+## **Future Enhancements**
 
-    Adding reviews and ratings for products.
-    Implementing payment gateway integration.
-    Offering discounts and promotional codes.
+   - Adding reviews and ratings for products.
+   - Implementing payment gateway integration.
+   - Offering discounts and promotional codes.
 
-Contributing
+## **Contributing**
 
 We welcome contributions! Please submit a pull request or open an issue for any suggestions or improvements.
