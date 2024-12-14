@@ -1,6 +1,6 @@
 # Laptop Sales Website
 
-## **Overview ** 
+## **Overview** 
 
 This project is a **full-stack web application for selling laptops**. The website allows users to browse available laptops, view detailed information about each product, and make purchases.
 
