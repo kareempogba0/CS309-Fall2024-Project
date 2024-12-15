@@ -1,4 +1,7 @@
+.section {
+    padding-top: 76px;
+}
+
 .product {
-    height: 100vh;
-    background-color: rgb(19, 46, 8);
+    text-align: center;
 }

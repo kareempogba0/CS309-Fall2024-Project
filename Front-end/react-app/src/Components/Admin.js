@@ -21,8 +21,8 @@ function Admin() {
                 <h1>Welcome, Admin!</h1>
             ) : (
                 <>
-                    <h1>Admin Page</h1>
-                    <button onClick={() => setIsSignedIn(true)}>Go to Sign In</button>
+                    
+                    
                     <div className="signin-form">
                         <h2>Sign In Admin </h2>
                         <form onSubmit={handleSubmit}>
@@ -44,7 +44,7 @@ function Admin() {
                                     required
                                 />
                             </div>
-                            <button type="submit">Sign In</button>
+                            <button onClick={() => setIsSignedIn(true)} type="submit">Sign In</button>
                         </form>
                     </div>
                 </>
