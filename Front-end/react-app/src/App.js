@@ -6,6 +6,7 @@ import NavBar from './Components/NavBar';
 import Home from'./Components/Home';
 import Product from'./Components/Product';
 import Admin from'./Components/Admin';
+import AdminControl from './Components/AdminControl';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route path='/product' element={<Product />}/>
 
       <Route path='/admin' element={<Admin />}/> 
+      <Route path="/AdminControl" element={<AdminControl />} />
 
 
 

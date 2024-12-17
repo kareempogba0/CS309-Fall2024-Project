@@ -12,6 +12,9 @@
     width: 300px;
     margin: 0 auto;
     opacity: 0.8;
+    /* background-image: url('public/—Pngtree—blue abstract background images free_1996215.jpg'); */
+    background-size: cover; 
+    background-position: center; 
 }
 
 .signin-form input {
