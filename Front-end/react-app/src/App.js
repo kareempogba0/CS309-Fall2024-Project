@@ -4,9 +4,9 @@ import './App.css';
 import { Routes,Route} from 'react-router-dom';
 import NavBar from './Components/NavBar';
 import Home from'./Components/Home';
-import Product from'./Components/Product';
-import Admin from'./Components/Admin';
-import AdminControl from './Components/AdminControl';
+import Product from'./Components/ProductComp/Product';
+import Admin from'./Components/AdminComp/Admin';
+import AdminControl from './Components/AdminComp/AdminControl';
 
 
 function App() {
