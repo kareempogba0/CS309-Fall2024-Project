@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './AdminControl.css';
 function AdminControl() {
+    const [id, setId] = useState(''); // For update and delete forms
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
@@ -22,7 +23,7 @@ function AdminControl() {
         };
 
         try {
-            const response = await fetch('http://localhost:3000/addproducts', {
+            const response = await fetch('http://localhost:3000/addproduct', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -47,6 +48,63 @@ function AdminControl() {
             setMessage('Something went wrong!');
         }
     };
+
+    const handleUpdateProduct = async (e) => {
+        e.preventDefault();
+        
+        const updatedProduct = {
+            id: new Date().getTime(),
+            name,
+            price,
+            description,
+            image,
+            category,
+        };
+
+        try {
+            const response = await fetch(`http://localhost:3000/updateproduct/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedProduct),
+            });
+            const data = await response.text();
+            if (response.ok) {
+                setMessage('Product updated successfully!');
+                setName('');
+                setPrice('');
+                setDescription('');
+                setImage('');
+                setCategory('');
+            } else {
+                setMessage('Failed to update product: ' + data);
+            }
+        } catch (error) {
+            console.error('Error updating product:', error);
+            setMessage('Something went wrong!');
+        }
+    };
+
+    const handleDeleteProduct = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch(`http://localhost:3000/deleteproduct/${id}`, {
+                method: 'DELETE',
+            });
+            const data = await response.text();
+            if (response.ok) {
+                setMessage('Product deleted successfully!');
+            } else {
+                setMessage('Failed to delete product: ' + data);
+            }
+        } catch (error) {
+            console.error('Error deleting product:', error);
+            setMessage('Something went wrong!');
+        }
+    };
+
 
     /*============================*/
     const renderForm = () => {
@@ -104,34 +162,64 @@ function AdminControl() {
             );
         } else if (currentForm === 'update') {
             return (
-                <form>
+                <form onSubmit={handleUpdateProduct}>
                     <h3 className="form-h3">Update Product</h3>
                     <div>
                         <label>Product ID:</label>
-                        <input type="text" placeholder="Enter Product ID" required />
+                        {/* <input type="text" placeholder="Enter Product ID" required /> */}
+                        <input
+                            type="text"
+                            value={id}
+                            onChange={(e) => setId(e.target.value)}
+                            required
+                        />
                     </div>
                     <div>
                         <label>New Name:</label>
-                        <input type="text" placeholder="Enter new name" />
+                        {/* <input type="text" placeholder="Enter new name" /> */}
+                        <input
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
                     </div>
                     <div>
                         <label>New Price:</label>
-                        <input type="number" placeholder="Enter new price" />
+                        {/* <input type="number" placeholder="Enter new price" /> */}
+                        <input
+                            type="number"
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                            required
+                        />
                     </div>
                     <div>
                         <label>New Description:</label>
-                        <input type="text" placeholder="Enter new description" />
+                        {/* <input type="text" placeholder="Enter new description" /> */}
+                        <input
+                            type="text"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            required
+                        />
                     </div>
                     <div>
                         <label>New Image URL:</label>
-                        <input type="text" placeholder="Enter new image URL" />
+                        {/* <input type="text" placeholder="Enter new image URL" /> */}
+                        <input
+                            type="text"
+                            value={image}
+                            onChange={(e) => setImage(e.target.value)}
+                            required
+                        />
                     </div>
                     <button type="submit">Update Product</button>
                 </form>
             );
         } else if (currentForm === 'delete') {
             return (
-                <form>
+                <form onSubmit={handleDeleteProduct}>
                     <h3 className="form-h3">Delete Product</h3>
                     <div>
                         <label>Product ID:</label>

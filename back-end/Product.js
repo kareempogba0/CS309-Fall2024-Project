@@ -26,6 +26,10 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
     enum: ['Hp', 'Dell', 'Lenovo', 'Acer'] 
+  },
+  rating: {
+    rate: { type: Number, min: 0, max: 5, default: 0 },
+    count: { type: Number, min: 0, default: 0 },
   }
 });
 
