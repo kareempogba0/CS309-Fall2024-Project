@@ -1,8 +1,8 @@
 import './HomeCss.css';
 import React from 'react';
-
-
-
+import AboutUs from './AboutUsComp/AboutUs'; 
+import AboutProj from './AboutProjComp/AboutProj';
+import ContactUs from './ContactUsComp/ContactUsj';
 
 
 
@@ -17,6 +17,9 @@ function Home(){
         </div>
         <div className='about'>
             {/* Here aboutUs section */}
+            <AboutUs/>
+            <AboutProj/>
+            <ContactUs/>
         </div>
 
         </>
