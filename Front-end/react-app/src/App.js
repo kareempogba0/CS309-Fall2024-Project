@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import { Routes,Route} from 'react-router-dom';
-import NavBar from './Components/NavBar';
+import NavBar from './Components/NavBar/NavBar';
 import Home from'./Components/Home';
 import Product from'./Components/ProductComp/Product';
 import Admin from'./Components/AdminComp/Admin';

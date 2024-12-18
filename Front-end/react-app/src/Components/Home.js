@@ -1,6 +1,6 @@
 import './HomeCss.css';
 import React from 'react';
-import AboutUs from './AboutUsComp/AboutUs'
+
 
 
 
@@ -17,11 +17,8 @@ function Home(){
         </div>
         <div className='about'>
             {/* Here aboutUs section */}
-            <AboutUs/>
-            
-
-            
         </div>
+
         </>
     );
 }
