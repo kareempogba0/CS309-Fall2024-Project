@@ -20,7 +20,7 @@ function Admin() {
         <div className="admin">
             <div className="signin-form">
                 <h2>Sign In Admin</h2>
-                <form onSubmit={handleSubmit}>
+                <div >
                     <div>
                         <label>Email</label>
                         <input
@@ -39,8 +39,8 @@ function Admin() {
                             required
                         />
                     </div>
-                    <button type="submit">Sign In</button>
-                </form>
+                    <button onClick={handleSubmit} type="submit">Sign In</button>
+                </div>
             </div>
         </div>
     );

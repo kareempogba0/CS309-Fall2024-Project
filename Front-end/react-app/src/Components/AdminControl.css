@@ -1,7 +1,24 @@
-h1 {
+.container {
+    padding: 83px 20px;
+    padding-top: 110px;
+}
+
+.wel-div {
+    text-align: center;
+    margin: 5px auto;
+}
+
+.form-h3 {
+    color: #f44336;
+    font-weight: bolder;
+}
+
+.wel-div h1 {
     font-size: 2rem;
-    color: #333;
     margin-bottom: 20px;
+    background: linear-gradient(90deg, #001eff, #8cc644, #90c8ee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 p {
@@ -15,14 +32,15 @@ form {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
+    width: 60%;
+    /* max-width: 500px; */
+    margin: 10px auto;
 }
 
 form div {
     margin-bottom: 20px;
 }
+
 form label {
     font-size: 1rem;
     font-weight: bold;
@@ -30,7 +48,7 @@ form label {
 }
 
 form input {
-    width: 100%;
+    width: 94%;
     padding: 10px;
     font-size: 1rem;
     border-radius: 4px;
@@ -66,4 +84,17 @@ button:hover {
 
 .message.error {
     color: #f44336;
+}
+
+.options {
+    display: flex;
+    justify-content: space-around;
+    color: coral;
+    width: 60%;
+    margin: auto;
+    font-size: x-large;
+}
+
+.options h4:hover {
+    cursor: pointer;
 }
