@@ -3,4 +3,5 @@
     align-items: center;
     gap: 15px;
     padding: 30px 70px;
+    flex-wrap: wrap;
 }

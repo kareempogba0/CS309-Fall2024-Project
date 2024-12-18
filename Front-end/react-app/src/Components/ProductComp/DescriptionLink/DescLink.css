@@ -1,0 +1,58 @@
+.description-container {
+    display: flex;
+    /* Use flexbox to align content */
+    justify-content: center;
+    /* Center content horizontally */
+    align-items: center;
+    /* Center content vertically */
+    height: 100vh;
+}
+
+.description-card {
+    display: flex;
+    /* Use flexbox to align image and content side by side */
+    justify-content: flex-start;
+    /* Align items from left */
+    align-items: center;
+    /* Vertically center content */
+    width: 60%;
+    /* Set the width of the card */
+    border: 2px #FFC107 solid;
+    /* Optional: Border around the card */
+    border-radius: 8px;
+    /* Optional: Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Optional: Add shadow to the card */
+    padding: 20px;
+    background-color: #fff;
+    /* Set background color for the card */
+}
+
+.description-image {
+    width: 40%;
+    /* Make image take 40% of the card width */
+    height: auto;
+    margin-right: 20px;
+    /* Space between image and text */
+}
+
+.description-content {
+    width: 60%;
+    /* Text content takes the remaining 60% */
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+img {
+    max-width: 100%;
+    /* Ensure the image scales correctly */
+    height: auto;
+}
