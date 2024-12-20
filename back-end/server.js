@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const Product = require("./Product");
 const Request = require('./request_model')
+const VisaCard = require('./VisaCard')
 
 const app = express();
 app.use((req, res, next) => {
@@ -186,6 +187,55 @@ app.put("/request/:id", async (req, res) => {
     } catch (error) {
         res.status(500).send({ message: error.message });
     }
+});
+
+app.post('/addVisaCard', async (req, res) => {
+  const { Name, CardNumber, CVV } = req.body;
+  try {
+      const visaCard = new VisaCard({ Name, CardNumber, CVV });
+      const savedVisaCard = await visaCard.save();
+      res.status(200).send(savedVisaCard);
+  } catch (error) {
+      res.status(400).send({ message: error.message });
+  }
+});
+
+app.get("/visaCards", async (req, res) => {
+  try {
+      const visaCards = await VisaCard.find();
+      res.status(200).json(visaCards);
+  } catch (error) {
+      res.status(500).json({ message: error.message });
+  }
+});
+
+app.delete("/deleteVisaCard/:id", async (req, res) => {
+  const id = req.params.id; 
+
+  try {
+      const deletedVisaCard = await VisaCard.findOneAndDelete({ _id: new mongoose.Types.ObjectId(id) });
+
+      if (!deletedVisaCard) {
+          return res.status(404).send("VisaCard not found");
+      }
+      res.status(200).send("VisaCard deleted successfully");
+  } catch (err) {
+      console.error("Error deleting VisaCard:", err);
+      res.status(500).send("Server error: " + err.message);
+  }
+});
+
+app.put("/updateVisaCard/:id", async (req, res) => {
+  const id = req.params.id; 
+  try {
+      const updatedVisaCard = await VisaCard.findByIdAndUpdate(id, req.body, { new: true });
+      if (!updatedVisaCard) {
+          return res.status(404).send("VisaCard not found");
+      }
+      res.status(200).send(updatedVisaCard);
+  } catch (err) {
+      res.status(500).send("Server error: " + err.message);
+  }
 });
 
 try {

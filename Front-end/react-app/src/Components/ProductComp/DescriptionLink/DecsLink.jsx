@@ -16,6 +16,7 @@ const DecsLink = () => {
                 {/* Content on the right */}
                 <div className="description-content">
                     <h1>Product Description</h1>
+                    <p>{product?.description}</p>
                     <p><strong>Index:</strong> {index}</p>
                     <h2>{product?.title}</h2>
                     <p><strong>Price:</strong> {product?.price}</p>
