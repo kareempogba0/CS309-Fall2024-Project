@@ -5,9 +5,22 @@ const Product = require("./Product");
 const Request = require('./request_model')
 
 const app = express();
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // Adjust origin as needed
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  if (req.method === "OPTIONS") {
+      return res.sendStatus(200); // Respond OK to preflight
+  }
+  next();
+});
+
 app.use(cors({
-  origin: 'http://localhost:3000'
+    origin: "http://localhost:3000", // Frontend URL
+    methods: "GET, POST, PUT, DELETE, OPTIONS",
+    allowedHeaders: "Content-Type, Authorization",
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({extended:false}))
 
@@ -20,43 +33,43 @@ mongoose.connect("mongodb+srv://kareempogba:euboV3iBpCrIyJMh@ourcluster.qaupx.mo
     console.error("Database connection error:", err);
   });
 
-app.post("/addproduct", async (req, res) => {
-  try {
-    if (isNaN(req.body.price) || req.body.price <= 0) {
-      return res.status(400).send("Price must be a positive number");
+  app.post("/addproduct", async (req, res) => {
+    try {
+      console.log("Request to add product:", req.body); // Debugging log
+  
+      if (isNaN(req.body.price) || req.body.price <= 0) {
+        return res.status(400).send("Price must be a positive number");
+      }
+  
+      const exist = await Product.findOne({ id: req.body.id });
+      if (exist) {
+        return res.status(400).send("Product already exists");
+      }
+  
+      const product = new Product(req.body);
+      await product.save();
+  
+      res.status(200).send("Product added successfully");
+    } catch (err) {
+      res.status(500).send("Server error: " + err.message);
     }
-
-    const exist = await Product.findOne({ id: req.body.id });
-    if (exist) {
-      return res.status(400).send("Product already exists");
-    }
-    const product = new Product({
-      id: req.body.id,
-      name: req.body.name,
-      price: req.body.price,
-      description: req.body.description,
-      image: req.body.image,
-      category: req.body.category,
-      rating: req.body.rating,
-    });
-
-    await product.save();
-    res.send("Product added successfully");
-  } catch (err) {
-    res.status(500).send("Server error: " + err);
-  }
-});
+  });
+  
 
 app.get("/products/:category?", async (req, res) => {
+  console.log("Received request for /products");
   try {
     const category = req.params.category;
     if (!category) {
       const products = await Product.find();
+      console.log("Fetched products:", products);
       return res.json(products);
     }
     const products = await Product.find({ category: category });
+    console.log(`Fetched products for category ${category}:`, products);
     res.json(products);
   } catch (error) {
+    console.error("Error fetching products:", error.message);
     res.status(500).json({ message: error.message });
   }
 });
@@ -99,17 +112,16 @@ app.put("/updateproduct/:id", async (req, res) => {
 });
 
 app.delete("/deleteproduct/:id", async (req, res) => {
+  const { id } = req.params; // Ensure 'id' is retrieved from params
   try {
-    const { id } = req.params;
-    const deletedProduct = await Product.findOneAndDelete({ id: id });
-
-    if (!deletedProduct) {
-      return res.status(500).send("Product not found");
-    }
-
-    res.send("Product deleted successfully");
+      const deletedProduct = await Product.findOneAndDelete({ id: id });
+      if (!deletedProduct) {
+          return res.status(404).send("Product not found");
+      }
+      res.send("Product deleted successfully");
   } catch (err) {
-    res.status(500).send("Server error: " + err);
+      console.error("Error deleting product:", err);
+      res.status(500).send("Server error: " + err.message);
   }
 });
 
@@ -177,8 +189,8 @@ app.put("/request/:id", async (req, res) => {
 });
 
 try {
-  app.listen(3000, () => {
-      console.log(`Server is running on port ${3000}`);
+  app.listen(5000, () => {
+      console.log(`Server is running on port ${5000}`);
   });
 } catch (error) {
   console.error(`Failed to start the server: ${error.message}`);

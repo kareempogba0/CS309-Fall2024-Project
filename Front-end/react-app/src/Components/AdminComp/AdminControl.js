@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AdminControl.css';
 function AdminControl() {
     const [id, setId] = useState(''); // For update and delete forms
@@ -23,7 +23,7 @@ function AdminControl() {
         };
 
         try {
-            const response = await fetch('http://localhost:3000/addproduct', {
+            const response = await fetch('http://localhost:5000/addproduct', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -53,7 +53,6 @@ function AdminControl() {
         e.preventDefault();
         
         const updatedProduct = {
-            id: new Date().getTime(),
             name,
             price,
             description,
@@ -62,14 +61,16 @@ function AdminControl() {
         };
 
         try {
-            const response = await fetch(`http://localhost:3000/updateproduct/${id}`, {
+            const response = await fetch(`http://localhost:5000/updateproduct/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(updatedProduct),
             });
+
             const data = await response.text();
+
             if (response.ok) {
                 setMessage('Product updated successfully!');
                 setName('');
@@ -88,9 +89,13 @@ function AdminControl() {
 
     const handleDeleteProduct = async (e) => {
         e.preventDefault();
-
+        if (!id) {
+            setMessage('Product ID is missing');
+            return;
+        }
+    
         try {
-            const response = await fetch(`http://localhost:3000/deleteproduct/${id}`, {
+            const response = await fetch(`http://localhost:5000/deleteproduct/${id}`, {
                 method: 'DELETE',
             });
             const data = await response.text();
@@ -104,6 +109,7 @@ function AdminControl() {
             setMessage('Something went wrong!');
         }
     };
+
 
 
     /*============================*/
@@ -223,13 +229,19 @@ function AdminControl() {
                     <h3 className="form-h3">Delete Product</h3>
                     <div>
                         <label>Product ID:</label>
-                        <input type="text" placeholder="Enter Product ID to delete" required />
+                        <input
+                            type="text"
+                            placeholder="Enter Product ID to delete"
+                            value={id}
+                            onChange={(e) => setId(e.target.value)} // Dynamically update the ID
+                            required
+                        />
                     </div>
                     <button type="submit">Delete Product</button>
                 </form>
             );
         }
-    };
+    };        
     /*============================*/
 
     return (
