@@ -21,6 +21,31 @@ const DecsLink = () => {
                     <h2>{product?.title}</h2>
                     <p><strong>Price:</strong> {product?.price}</p>
                     <p>{product?.category}</p>
+                    <p>
+                    {product?.rating && product?.rating.rate > 0 && product?.rating.count > 0 ? (
+                        <>
+                        <strong>Rating:</strong>
+                        <span>
+                            {Array.from({ length: 5 }, (_, index) => (
+                            <span
+                                key={index}
+                                style={{
+                                color: index < product.rating.rate ? '#ffc107' : '#e4e5e9',
+                                marginRight: '2px',
+                                }}
+                            >
+                                ★
+                            </span>
+                            ))}
+                        </span>
+                        <span style={{ marginLeft: '8px' }}>({product.rating.count} reviews)</span>
+                        </>
+                    ) : (
+                        <span>No ratings yet</span>
+                    )}
+                    </p>
+
+
                 </div>
             </div>
         </div>
