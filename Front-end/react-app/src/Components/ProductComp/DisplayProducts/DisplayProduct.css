@@ -5,3 +5,44 @@
     padding: 30px 70px;
     flex-wrap: wrap;
 }
+
+.Filterdata {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 30px 70px;
+    flex-wrap: wrap;
+}
+
+.Search {
+    border: 4px solid #FFC107;
+    border-radius: 12px;
+    /* background-color: #FFC107; */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 300px;
+    margin: auto;
+    position: relative;
+}
+
+/* .Search h2 {
+    margin: 0;
+    font-size: 20px;
+} */
+
+#SearchInput {
+    width: 600px;
+    flex-grow: 1;
+    padding: 8px 12px;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3 ease;
+}
+
+#SearchInput :focus {
+    border-color: black;
+    box-shadow: 0 0 5px rgba(0, 120, 215, 0.5);
+}
