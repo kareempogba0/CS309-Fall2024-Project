@@ -3,8 +3,12 @@ import ProductCard from '../ProductCard/ProductCard';
 import './DisplayProduct.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+
+
 const DisplayProduct = ({ Counter }) => {
     const [products, setProducts] = useState([]);  
+    let [searchterm, setsearchterm] = useState("");  
+    
     useEffect(() => {
       axios.get('http://localhost:5000/products')
       .then((response) => {
@@ -21,17 +25,17 @@ const DisplayProduct = ({ Counter }) => {
     <>
       <div className="Search">
         {/* <h2>Search </h2> */}
-        <input id="SearchInput" type="text" placeholder="search here ...." onChange={(event) => {
+        <input id="SearchInput" type="text" placeholder="search..." onChange={(event) => {
           setsearchterm(event.target.value);
         }} />
       </div>
       <div className="Filterdata">
         {
-          productss.filter((val) => {
+          products.filter((val) => {
             if (searchterm === "") {
               return (
                 <div className="display">
-                  {productss.map((product, index) => (
+                  {products.map((product, index) => (
                     <ProductCard
                       key={index}
                       title={product.name}  // Use 'name' here instead of 'title'

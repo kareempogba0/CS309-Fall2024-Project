@@ -8,6 +8,7 @@ import Product from'./Components/ProductComp/Product';
 import Admin from'./Components/AdminComp/Admin';
 import AdminControl from './Components/AdminComp/AdminControl';
 import Desc from './Components/ProductComp/DescriptionLink/DecsLink'
+import PaymentPage from'./Components/ProductComp/Payment/PaymentPage'
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       <Route path='/admin' element={<Admin />}/> 
       <Route path="/AdminControl" element={<AdminControl />} />
       <Route path='/Description' element={<Desc/>}></Route>
+      <Route path="/payment" element={<PaymentPage />} /> 
 
 
 

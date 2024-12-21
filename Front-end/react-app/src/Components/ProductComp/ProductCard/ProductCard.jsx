@@ -5,12 +5,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 const ProductCard = ({ title, price, image, Counter, product, index,category }) => {
-    const navigate = useNavigate(); // Initialize the navigate function
+    const navigate = useNavigate(); 
+    
 
-    // Function to handle description click and navigate to the new page
+    
     const handleDescriptionClick = () => {
-        navigate(`/Description`, { state: { product, index } }); // Pass both product and index
+        navigate(`/Description`, { state: { product, index } }); 
     };
+
+    
 
     return (
         <div className="productcard-card">
@@ -21,7 +24,7 @@ const ProductCard = ({ title, price, image, Counter, product, index,category }) 
                 <h4 className="productcard-prices">Price: <span>{price}</span></h4> {/* Use 'price' instead of 'salary' */}
                 <h5 onClick={handleDescriptionClick} className='productcard-link'>Desc...</h5>
             </div>
-            <div className="btn-Buy" onClick={Counter}> {/* Call Counter on click */}
+            <div className="btn-Buy" onClick={() => Counter(product)}> {/* Call Counter on click */}
                 <h2> Add </h2>
                 <FontAwesomeIcon className="fs" icon={faShoppingCart} size="1x" />
             </div>

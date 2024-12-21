@@ -8,6 +8,14 @@
     height: 100vh;
 }
 
+.description-container h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #cc8ad8, #a34a4a, #0098ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .description-card {
     display: flex;
     /* Use flexbox to align image and content side by side */
