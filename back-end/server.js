@@ -4,6 +4,9 @@ const cors = require("cors");
 const Product = require("./Product");
 const Request = require('./request_model')
 const VisaCard = require('./VisaCard')
+const bcrypt = require('bcrypt')
+const jwt = require("jsonwebtoken");
+const User = require('./user.model')
 
 const app = express();
 app.use((req, res, next) => {
@@ -235,6 +238,164 @@ app.put("/updateVisaCard/:id", async (req, res) => {
       res.status(200).send(updatedVisaCard);
   } catch (err) {
       res.status(500).send("Server error: " + err.message);
+  }
+});
+
+const authenticateToken = (req, res, next) => {
+  const token = req.header("Authorization")?.split(" ")[1]; 
+
+  if (!token) return res.status(401).json({ message: "No token provided." });
+
+  jwt.verify(token, "your_secret_key", (err, user) => {
+    if (err) return res.status(403).json({ message: "Invalid token." });
+    req.user = user;
+    next();
+  });
+};
+
+app.get('/users', async (req, res) => {
+  try {
+      const users = await User.find({});
+      res.status(200).json(users);
+  } catch (error) {
+      res.status(500).json({message: error.message})
+  }
+});
+
+app.get('/user/:id', async (req, res) => {
+  
+  try {
+      // req id 
+      const id = req.params.id;
+      // find by id in users 
+      const user = await User.findById(id);
+      res.status(200).json(user);
+  } catch (error) {
+      res.status(500).json({message: error.message})
+  }
+});
+
+app.post('/adduser', async (req, res) => {
+  const { name, email, password, phoneNumber } = req.body;
+
+  // Validate required fields
+  if (!name || !email || !password) {
+      return res.status(400).send('Full Name, Email, and Password are required');
+  }
+
+  try {
+      // Check if user already exists
+      if (await User.findOne({ email })) {
+          return res.status(400).send(`User with email "${email}" already exists`);
+      }
+
+      // Hash the password before saving
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      // Create a new user
+      const user = new User({
+          name,
+          email,
+          password: hashedPassword,
+          phoneNumber,
+      });
+
+      await user.save();
+      res.status(200).send('User added successfully');
+  } catch (error) {
+      res.status(500).json({ message: error.message });
+  }
+});
+
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Find the user by email
+    const user = await User.findOne({ email });
+
+    // If user is not found
+    if (!user) {
+      console.log("User not found for email:", email);  // Debugging log
+      return res.status(401).json({ message: "Invalid credentials." });
+    }
+
+    // Log the user object for debugging
+    console.log("Found user:", user);
+
+    // Compare the provided password with the stored hashed password
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    // Log if password matches
+    console.log("Password match:", isMatch);
+
+    // If password does not match
+    if (!isMatch) {
+      return res.status(401).json({ message: "Invalid credentials." });
+    }
+
+    // Create a JWT token if authentication is successful
+    const token = jwt.sign({ id: user.id, name: user.name, email: user.email }, "your_secret_key", {
+      expiresIn: "1h", // Token expires in 1 hour
+    });
+
+    res.json({ token });
+
+  } catch (error) {
+    console.error("Error during login:", error.message); // Log any error that occurs
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
+
+app.get("/profile", authenticateToken, (req, res) => {
+  const userId = req.user.id; 
+
+  const user = User.find((user) => user.id === userId);
+
+  if (!user) return res.status(404).json({ message: "User not found." });
+
+  res.json({
+    id: user.id,
+    name: user.name,
+    email: user.email,
+  });
+});
+
+app.delete('/user/:id', async (req, res) => {
+
+  // req id 
+  const id = req.params.id;
+  // delet by id in users 
+ 
+  try {
+      const {id} = req.params;
+      const user = await User.findByIdAndDelete(id);
+      if(!user){
+          return res.status(404).json({message: `cannot find any user with ID ${id}`})
+      }
+      res.status(200).json(user);
+      
+  } catch (error) {
+      res.status(500).json({message: error.message})
+  }
+});
+
+app.put("/user/:id", async (req, res) => {
+  try{
+      const { id } = req.params;
+      const updates = req.body;
+
+      //find user by ID and update
+      const user = await User.findByIdAndUpdate(id, updates, { new: true });
+      if(!user){
+          return res.status(404).json({ message: `User with Id ${id} not found` });
+      }
+
+      res.status(200).json({ message: "User updated successfully", user });
+  } catch(error){
+      res.status(500).json({ message: error.message });
   }
 });
 

@@ -9,6 +9,9 @@ import Admin from'./Components/AdminComp/Admin';
 import AdminControl from './Components/AdminComp/AdminControl';
 import Desc from './Components/ProductComp/DescriptionLink/DecsLink'
 import PaymentPage from'./Components/ProductComp/Payment/PaymentPage'
+import Login from './Components/LoginComp/Login';
+import Register from './Components/RegisterComp/Register';
+import Profile from './Components/ProfileComp/Profile';
 
 
 function App() {
@@ -25,7 +28,9 @@ function App() {
       <Route path='/Description' element={<Desc/>}></Route>
       <Route path="/payment" element={<PaymentPage />} /> 
 
-
+      <Route path='/login' element={<Login />}/>
+      <Route path='/register' element={<Register />}/>
+      <Route path='/profile' element={<Profile />}/>
 
     </Routes>
 

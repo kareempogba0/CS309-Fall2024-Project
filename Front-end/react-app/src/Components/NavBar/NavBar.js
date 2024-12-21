@@ -12,6 +12,10 @@ return(
             <li><Link className='anchor' to='/'>Home</Link></li>
             <li><Link className='anchor' to='/product'>Product</Link></li>
             <li><Link className='anchor' to='/admin'>Admin</Link></li>
+
+            <li><Link className='anchor' to='/register'>Register</Link></li>
+            <li><Link className='anchor' to='/login'>Login</Link></li>
+            
         </ul>
         </div>
     </nav>
