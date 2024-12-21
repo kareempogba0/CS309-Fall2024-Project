@@ -240,19 +240,6 @@ app.put("/updateVisaCard/:id", async (req, res) => {
       res.status(500).send("Server error: " + err.message);
   }
 });
-
-const authenticateToken = (req, res, next) => {
-  const token = req.header("Authorization")?.split(" ")[1]; 
-
-  if (!token) return res.status(401).json({ message: "No token provided." });
-
-  jwt.verify(token, "your_secret_key", (err, user) => {
-    if (err) return res.status(403).json({ message: "Invalid token." });
-    req.user = user;
-    next();
-  });
-};
-
 app.get('/users', async (req, res) => {
   try {
       const users = await User.find({});
@@ -305,62 +292,6 @@ app.post('/adduser', async (req, res) => {
   } catch (error) {
       res.status(500).json({ message: error.message });
   }
-});
-
-app.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    // Find the user by email
-    const user = await User.findOne({ email });
-
-    // If user is not found
-    if (!user) {
-      console.log("User not found for email:", email);  // Debugging log
-      return res.status(401).json({ message: "Invalid credentials." });
-    }
-
-    // Log the user object for debugging
-    console.log("Found user:", user);
-
-    // Compare the provided password with the stored hashed password
-    const isMatch = await bcrypt.compare(password, user.password);
-
-    // Log if password matches
-    console.log("Password match:", isMatch);
-
-    // If password does not match
-    if (!isMatch) {
-      return res.status(401).json({ message: "Invalid credentials." });
-    }
-
-    // Create a JWT token if authentication is successful
-    const token = jwt.sign({ id: user.id, name: user.name, email: user.email }, "your_secret_key", {
-      expiresIn: "1h", // Token expires in 1 hour
-    });
-
-    res.json({ token });
-
-  } catch (error) {
-    console.error("Error during login:", error.message); // Log any error that occurs
-    res.status(500).json({ message: error.message });
-  }
-});
-
-
-
-app.get("/profile", authenticateToken, (req, res) => {
-  const userId = req.user.id; 
-
-  const user = User.find((user) => user.id === userId);
-
-  if (!user) return res.status(404).json({ message: "User not found." });
-
-  res.json({
-    id: user.id,
-    name: user.name,
-    email: user.email,
-  });
 });
 
 app.delete('/user/:id', async (req, res) => {

@@ -1,22 +1,22 @@
-// import React from 'react';
+import React from 'react';
 
 
-// const ProductDisc = () => {
+const ProductDisc = () => {
   
 
-//   return (
-//     <div>
-//       <h1>Desc</h1>
-//       <h1>Desc</h1>
-//       <h1>Desc</h1>
-//       <h1>Desc</h1>
-//       <h1>Desc</h1>
-//       <h1>Desc</h1>
-//       <h1>Desc</h1>
-//       <h1>Desc</h1>
-//       <h1>Desc</h1>
-//     </div>
-//   );
-// };
+  return (
+    <div>
+      <h1>Desc</h1>
+      <h1>Desc</h1>
+      <h1>Desc</h1>
+      <h1>Desc</h1>
+      <h1>Desc</h1>
+      <h1>Desc</h1>
+      <h1>Desc</h1>
+      <h1>Desc</h1>
+      <h1>Desc</h1>
+    </div>
+  );
+};
 
-// export default ProductDisc;
+export default ProductDisc;
