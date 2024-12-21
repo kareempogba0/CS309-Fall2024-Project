@@ -7,8 +7,12 @@ import axios from 'axios';
 
 const DisplayProduct = ({ Counter }) => {
     const [products, setProducts] = useState([]);  
+<<<<<<< HEAD
     let [searchterm, setsearchterm] = useState("");  
     
+=======
+    const [searchterm, setsearchterm] = useState("");
+>>>>>>> 02a75c0b8be1d33113c7d88248de31f07e297850
     useEffect(() => {
       axios.get('http://localhost:5000/products')
       .then((response) => {
