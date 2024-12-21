@@ -10,6 +10,7 @@
 .parent {
     display: flex;
     justify-content: space-around;
+    
     gap: 30px;
     margin-top: 50px;
     margin-bottom: 50px;
@@ -87,4 +88,16 @@ h3 {
 
 .display-pay h3 {
     font-weight: 800;
+}
+
+@media (max-width: 768px) {
+
+    .parent {
+      
+        flex-direction: column;
+        
+        gap: 30px;
+       
+    }
+  
 }

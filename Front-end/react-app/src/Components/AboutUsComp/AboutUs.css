@@ -56,8 +56,9 @@
         font-size: 1rem;
     }
     .team-item {
-        width: 48%;
+        /* width: 48%; */
         /* 2 items per row */
+        width: calc(100% / 4);
     }
     .team-item h3 {
         font-size: 1.1rem;
@@ -84,7 +85,9 @@
     .team-item {
         width: 100%;
         /* 1 item per row */
-        margin-bottom: 20px;
+        /* margin-bottom: 20px;
+         */
+         
     }
     .team-item h3 {
         font-size: 1rem;

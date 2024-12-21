@@ -28,7 +28,6 @@ const DisplayProduct = ({ Counter }) => {
   return (
     <>
       <div className="Search">
-        {/* <h2>Search </h2> */}
         <input id="SearchInput" type="text" placeholder="search..." onChange={(event) => {
           setsearchterm(event.target.value);
         }} />

@@ -66,3 +66,13 @@
 .btn-Buy:hover {
     color: black;
 }
+
+@media (max-width: 768px) {
+
+    .productcard-card {
+        
+        width: 20%;
+       
+    }
+  
+}
