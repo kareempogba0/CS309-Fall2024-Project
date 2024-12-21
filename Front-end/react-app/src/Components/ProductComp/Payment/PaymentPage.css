@@ -91,21 +91,17 @@ h3 {
 }
 
 @media (max-width: 768px) {
-<<<<<<< HEAD
     .parent {
         flex-direction: column;
         margin-left: 15px;
     }
 }
-=======
 
-    .parent {
-      
-        flex-direction: column;
-        
-        gap: 30px;
-       
-    }
+/* .parent {
+    
+    flex-direction: column;
+    
+    gap: 30px;
+    
+} */
   
-}
->>>>>>> 0e980a547064f61f60d5b35755ba06576d8ad6e1
