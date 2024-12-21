@@ -67,6 +67,7 @@
 .btn-Buy:hover {
     color: black;
 }
+<<<<<<< HEAD
 @media (max-width: 768px)  {
     .productcard-card {
         width: 100%;
@@ -89,4 +90,15 @@
         margin-bottom: 20px;
     }
     
+=======
+
+@media (max-width: 768px) {
+
+    .productcard-card {
+        
+        width: 20%;
+       
+    }
+  
+>>>>>>> 0e980a547064f61f60d5b35755ba06576d8ad6e1
 }
